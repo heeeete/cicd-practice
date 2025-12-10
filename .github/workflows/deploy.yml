@@ -37,3 +37,31 @@ jobs:
           push: true
           tags: |
             ${{ secrets.OCIR_REGION }}/${{ secrets.OCIR_NAMESPACE }}/${{ secrets.OCIR_REPO_NAME }}:latest
+
+            - name: Deploy to OCI VM via SSH
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          OCIR_REGION: ${{ secrets.OCIR_REGION }}
+          OCIR_NAMESPACE: ${{ secrets.OCIR_NAMESPACE }}
+          OCIR_REPO_NAME: ${{ secrets.OCIR_REPO_NAME }}
+          OCIR_USERNAME: ${{ secrets.OCIR_USERNAME }}
+          OCIR_PASSWORD: ${{ secrets.OCIR_PASSWORD }}
+          run: |
+            # 1) SSH 키 파일 생성
+            echo "$SSH_KEY" > key.pem
+            chmod 600 key.pem
+
+            # 2) 이미지 주소 문자열 조립
+            IMAGE="$OCIR_REGION/$OCIR_NAMESPACE/$OCIR_REPO_NAME:latest"
+
+            # 3) 원격 서버에 SSH로 접속해서 docker 명령 실행
+            ssh -o StrictHostKeyChecking=no -i key.pem "$SSH_USER@$SSH_HOST" << EOF
+              docker login $OCIR_REGION -u $OCIR_USERNAME -p $OCIR_PASSWORD
+              docker pull $IMAGE
+              docker stop demo || true
+              docker rm demo || true
+              docker run -d --name demo -p 80:80 $IMAGE
+            EOF
+

@@ -1,5 +1,6 @@
 # CI/CD Practice
 
+🔗 배포 사이트 - http://158.180.92.47/
 React + Vite 애플리케이션을 Docker로 컨테이너화하고 Oracle Cloud Infrastructure(OCI)에 자동 배포하는 CI/CD 파이프라인 실습 프로젝트입니다. 
 
 ## 📋 프로젝트 개요

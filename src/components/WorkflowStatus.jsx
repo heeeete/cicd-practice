@@ -31,13 +31,6 @@ const WorkflowStatus = ({ workflowRuns, loading, error }) => {
 		return "⚪";
 	};
 
-	const getStatusColor = (run) => {
-		if (run.status === "in_progress") return "border-blue-500 bg-blue-900/20";
-		if (run.conclusion === "success") return "border-green-500 bg-green-900/20";
-		if (run.conclusion === "failure") return "border-red-500 bg-red-900/20";
-		return "border-gray-500 bg-gray-900/20";
-	};
-
 	const truncateMessage = (message, maxLength = 50) => {
 		if (!message) return "No commit message";
 		if (message.length <= maxLength) return message;
@@ -51,22 +44,22 @@ const WorkflowStatus = ({ workflowRuns, loading, error }) => {
 				{workflowRuns.slice(0, 5).map((run) => (
 					<div
 						key={run.id}
-						className={`border-l-4 p-4 rounded-sm transition-all hover:scale-[1.02] ${getStatusColor(
-							run
-						)}`}
+						className={`border-l-4 p-4 rounded-sm transition-all hover:scale-[1.02] ${
+							run.status === "in_progress"
+								? "in-progress"
+								: run.conclusion === "success"
+								? "success"
+								: "failure"
+						}`}
 					>
 						<div className="flex items-start justify-between">
 							<div className="flex-1">
 								<div className="flex items-center gap-2 mb-2">
 									<span className="text-2xl">{getStatusIcon(run)}</span>
 									<span className=" font-semibold">Build #{run.run_number}</span>
-									<span className="text-gray-400 text-sm">
-										{formatDistanceToNow(run.created_at)}
-									</span>
+									<span className="text-gray-400 text-sm">{formatDistanceToNow(run.created_at)}</span>
 								</div>
-								<p className="text-gray-300 text-sm mb-2">
-									{truncateMessage(run.head_commit?.message)}
-								</p>
+								<p className="text-gray-300 text-sm mb-2">{truncateMessage(run.head_commit?.message)}</p>
 								<div className="flex gap-2 text-xs">
 									<span className="text-gray-400">
 										{run.status === "in_progress" ? "In Progress" : run.conclusion}

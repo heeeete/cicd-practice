@@ -18,3 +18,15 @@
 		@apply bg-background text-white;
 	}
 }
+
+@layer components {
+	.in-progress {
+		@apply border-blue-500 bg-blue-900/20;
+	}
+	.success {
+		@apply border-green-500 bg-green-900/20;
+	}
+	.failure {
+		@apply border-red-500 bg-red-900/20;
+	}
+}

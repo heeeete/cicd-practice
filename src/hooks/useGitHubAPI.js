@@ -26,8 +26,6 @@ export const useGitHubAPI = () => {
 				per_page: 30,
 			});
 
-			console.log(data);
-
 			setWorkflowRuns(data.workflow_runs);
 		} catch (err) {
 			console.error("빌드 실행 조회 오류:", err);

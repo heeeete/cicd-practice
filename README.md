@@ -25,8 +25,8 @@ GitHub Actions를 사용하여 코드 push 시 자동으로 Docker 이미지를 
 배포된 사이트에서는 이 저장소의 CI/CD 워크플로우를 실시간으로 모니터링할 수 있습니다.
 
 <!-- 대시보드 스크린샷 -->
+<img width="1065" height="882" alt="image" src="https://github.com/user-attachments/assets/17e7c403-7984-4350-bdca-c8397e249420" />
 
-![CI/CD Dashboard](./images/dashboard.png)
 
 ### 주요 기능
 

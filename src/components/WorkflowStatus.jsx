@@ -1,28 +1,7 @@
 import { formatDistanceToNow } from "../utils/helpers";
 
-const WorkflowStatus = ({ workflowRuns, loading, error }) => {
-	if (loading) {
-		return (
-			<div className="bg-surface rounded-lg p-6 shadow-lg">
-				<h2 className="text-2xl font-bold  mb-4">Recent Workflows</h2>
-				<div className="flex justify-center items-center h-40">
-					<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-				</div>
-			</div>
-		);
-	}
-
-	if (error) {
-		return (
-			<div className="bg-surface rounded-lg p-6 shadow-lg">
-				<h2 className="text-2xl font-bold  mb-4">Recent Workflows</h2>
-				<div className="bg-red-900/50 border border-red-500 text-red-200 p-4 rounded-sm">
-					<p className="font-semibold">Error loading workflows</p>
-					<p className="text-sm mt-1">{error}</p>
-				</div>
-			</div>
-		);
-	}
+const WorkflowStatus = ({ workflowRuns }) => {
+	console.log(workflowRuns);
 
 	const getStatusIcon = (run) => {
 		if (run.status === "in_progress") return "🔄";

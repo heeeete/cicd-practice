@@ -10,6 +10,8 @@ const SECONDS_IN_DAY = 24 * 60 * 60;
 export default function BubbleChart({ workflowRuns }) {
 	const getChartOptions = () => {
 		return {
+			responsive: true,
+			maintainAspectRatio: false,
 			scales: {
 				y: {
 					beginAtZero: true,
@@ -85,9 +87,9 @@ export default function BubbleChart({ workflowRuns }) {
 		return {
 			datasets: [
 				{
-					label: "Red dataset",
 					data,
 					backgroundColor: "rgb(34, 197, 94, 0.5)",
+					clip: false,
 				},
 			],
 		};
@@ -96,7 +98,9 @@ export default function BubbleChart({ workflowRuns }) {
 	return (
 		<div className="bg-surface rounded-lg p-6 shadow-lg">
 			<h2 className="text-2xl font-bold  mb-4">Build Time Distribution</h2>
-			<Bubble options={getChartOptions()} data={getChartData()} />
+			<div className="h-64">
+				<Bubble options={getChartOptions()} data={getChartData()} />
+			</div>
 		</div>
 	);
 }

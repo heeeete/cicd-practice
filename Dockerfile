@@ -2,6 +2,10 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
+# 빌드 인자로 환경 변수 받기
+ARG VITE_GITHUB_TOKEN
+ENV VITE_GITHUB_TOKEN=$VITE_GITHUB_TOKEN
+
 COPY package*.json ./
 RUN npm install
 

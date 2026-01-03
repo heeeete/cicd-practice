@@ -28,6 +28,8 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.OCIR_REGION }}/${{ secrets.OCIR_NAMESPACE }}/${{ secrets.OCIR_REPO_NAME }}:latest
+          build-args: |
+            VITE_GITHUB_TOKEN=${{ secrets.VITE_GITHUB_TOKEN }}
 
       - name: Deploy to OCI VM via SSH
         env:
@@ -52,14 +54,3 @@ jobs:
             docker rm demo || true
             docker run -d --name demo -p 80:80 $IMAGE
           EOF
-
-      - name: Fetch GitHub Workflow Data
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p public
-
-          curl -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs?per_page=20" \
-            | jq '.workflow_runs' \
-            > public/workflow-runs.json

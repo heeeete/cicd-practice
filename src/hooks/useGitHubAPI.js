@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Octokit } from "@octokit/rest";
-import { REPO_OWNER, REPO_NAME, REFRESH_INTERVAL } from "../utils/constants";
+import { REPO_OWNER, REPO_NAME, REFRESH_INTERVAL } from "../lib/constants";
 
 export const useGitHubAPI = () => {
 	const [workflowRuns, setWorkflowRuns] = useState([]);

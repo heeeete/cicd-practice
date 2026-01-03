@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from "../utils/helpers";
+import { formatDistanceToNow } from "../lib/helpers";
 
 const MetricCard = ({ title, value, icon }) => (
 	<div className="bg-surface rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">

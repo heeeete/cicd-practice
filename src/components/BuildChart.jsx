@@ -9,7 +9,7 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { calculateDuration } from "../utils/helpers";
+import { calculateDuration } from "../lib/helpers";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

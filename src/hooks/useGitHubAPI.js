@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Octokit } from '@octokit/rest';
 import { REPO_OWNER, REPO_NAME, REFRESH_INTERVAL } from '../utils/constants';
 
+// Note: For production, consider using a backend proxy to avoid exposing GitHub tokens
+// The VITE_GITHUB_TOKEN is optional and only needed for higher API rate limits
 export const useGitHubAPI = () => {
   const [workflowRuns, setWorkflowRuns] = useState([]);
   const [loading, setLoading] = useState(true);

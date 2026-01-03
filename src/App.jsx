@@ -1,11 +1,12 @@
-import { useGitHubAPI } from "./hooks/useGitHubAPI";
+// import { useGitHubAPI } from "./hooks/useGitHubAPI";
 import Header from "./components/Header";
 import SystemMetrics from "./components/SystemMetrics";
 import WorkflowStatus from "./components/WorkflowStatus";
 import BuildChart from "./components/BuildChart";
+import workflowRuns from "/public/workflow-runs.json";
 
 function App() {
-	const { workflowRuns, loading, error } = useGitHubAPI();
+	// const { workflowRuns, loading, error } = useGitHubAPI();
 
 	return (
 		<div className="min-h-screen  p-6">
@@ -15,7 +16,7 @@ function App() {
 				<SystemMetrics workflowRuns={workflowRuns} />
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-					<WorkflowStatus workflowRuns={workflowRuns} loading={loading} error={error} />
+					<WorkflowStatus workflowRuns={workflowRuns} />
 					<BuildChart workflowRuns={workflowRuns} />
 				</div>
 			</div>

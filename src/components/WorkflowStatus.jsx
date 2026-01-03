@@ -1,7 +1,6 @@
-import { formatDistanceToNow } from "../lib/helpers";
+import { formatDistanceToNow } from "../lib/utils";
 
 export default function WorkflowStatus({ workflowRuns, loading, error }) {
-	console.log(workflowRuns);
 	if (loading) {
 		return (
 			<div className="bg-surface rounded-lg p-6 shadow-lg">

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SystemMetrics from "./components/SystemMetrics";
 import WorkflowStatus from "./components/WorkflowStatus";
 import BuildChart from "./components/BuildChart";
+import BubbleChart from "./components/BubbleChart";
 
 export default function App() {
 	const { workflowRuns, loading, error } = useGitHubAPI();
@@ -16,7 +17,10 @@ export default function App() {
 
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 					<WorkflowStatus workflowRuns={workflowRuns} loading={loading} error={error} />
-					<BuildChart workflowRuns={workflowRuns} />
+					<div className="flex flex-col gap-6">
+						<BuildChart workflowRuns={workflowRuns} />
+						<BubbleChart workflowRuns={workflowRuns} />
+					</div>
 				</div>
 			</div>
 		</div>

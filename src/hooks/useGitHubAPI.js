@@ -23,8 +23,10 @@ export const useGitHubAPI = () => {
 			const { data } = await octokit.rest.actions.listWorkflowRunsForRepo({
 				owner: REPO_OWNER,
 				repo: REPO_NAME,
-				per_page: 10,
+				per_page: 30,
 			});
+
+			console.log(data);
 
 			setWorkflowRuns(data.workflow_runs);
 		} catch (err) {

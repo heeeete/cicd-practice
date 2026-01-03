@@ -9,11 +9,60 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { calculateDuration } from "../lib/helpers";
+import { calculateDuration } from "../lib/utils";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default function BuildChart({ workflowRuns }) {
+	const getChartOptions = () => {
+		return {
+			responsive: true,
+			maintainAspectRatio: false,
+			plugins: {
+				legend: {
+					display: false,
+				},
+				title: {
+					display: false,
+				},
+				tooltip: {
+					backgroundColor: "rgba(17, 24, 39, 0.95)",
+					titleColor: "rgb(243, 244, 246)",
+					bodyColor: "rgb(209, 213, 219)",
+					borderColor: "rgb(75, 85, 99)",
+					borderWidth: 1,
+					padding: 12,
+					displayColors: true,
+					callbacks: {
+						label: (context) => {
+							return `Duration: ${context.parsed.y}s`;
+						},
+					},
+				},
+			},
+			scales: {
+				y: {
+					beginAtZero: true,
+					ticks: {
+						color: "rgb(156, 163, 175)",
+						callback: (value) => `${value}s`,
+					},
+					grid: {
+						color: "rgba(75, 85, 99, 0.3)",
+					},
+				},
+				x: {
+					ticks: {
+						color: "rgb(156, 163, 175)",
+					},
+					grid: {
+						color: "rgba(75, 85, 99, 0.3)",
+					},
+				},
+			},
+		};
+	};
+
 	const getChartData = () => {
 		if (!workflowRuns || workflowRuns.length === 0) {
 			return {
@@ -22,7 +71,6 @@ export default function BuildChart({ workflowRuns }) {
 			};
 		}
 
-		// 10개의 최근 빌드 데이터 조회
 		const completedRuns = workflowRuns
 			.filter((run) => run.status === "completed")
 			.slice(0, 10)
@@ -54,58 +102,11 @@ export default function BuildChart({ workflowRuns }) {
 		};
 	};
 
-	const options = {
-		responsive: true,
-		maintainAspectRatio: false,
-		plugins: {
-			legend: {
-				display: false,
-			},
-			title: {
-				display: false,
-			},
-			tooltip: {
-				backgroundColor: "rgba(17, 24, 39, 0.95)",
-				titleColor: "rgb(243, 244, 246)",
-				bodyColor: "rgb(209, 213, 219)",
-				borderColor: "rgb(75, 85, 99)",
-				borderWidth: 1,
-				padding: 12,
-				displayColors: true,
-				callbacks: {
-					label: (context) => {
-						return `Duration: ${context.parsed.y}s`;
-					},
-				},
-			},
-		},
-		scales: {
-			y: {
-				beginAtZero: true,
-				ticks: {
-					color: "rgb(156, 163, 175)",
-					callback: (value) => `${value}s`,
-				},
-				grid: {
-					color: "rgba(75, 85, 99, 0.3)",
-				},
-			},
-			x: {
-				ticks: {
-					color: "rgb(156, 163, 175)",
-				},
-				grid: {
-					color: "rgba(75, 85, 99, 0.3)",
-				},
-			},
-		},
-	};
-
 	return (
 		<div className="bg-surface rounded-lg p-6 shadow-lg">
-			<h2 className="text-2xl font-bold  mb-4">Build History</h2>
+			<h2 className="text-2xl font-bold mb-4">Build History</h2>
 			<div className="h-64">
-				<Line data={getChartData()} options={options} />
+				<Line data={getChartData()} options={getChartOptions()} />
 			</div>
 			<div className="mt-4 flex gap-4 text-sm text-gray-400">
 				<div className="flex items-center gap-2">

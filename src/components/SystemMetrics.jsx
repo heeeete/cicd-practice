@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from "../lib/helpers";
+import { formatDistanceToNow } from "../lib/utils";
 
 export default function SystemMetrics({ workflowRuns }) {
 	const getMetrics = () => {
@@ -10,10 +10,8 @@ export default function SystemMetrics({ workflowRuns }) {
 			};
 		}
 
-		// Get latest successful build
 		const latestSuccessful = workflowRuns.find((run) => run.conclusion === "success");
 
-		// Calculate success rate from last 10 builds
 		const last10 = workflowRuns.slice(0, 10);
 		const successCount = last10.filter((run) => run.conclusion === "success").length;
 		const successRate = Math.round((successCount / last10.length) * 100);

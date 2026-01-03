@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
+:root {
+	--background: #222831;
+	--surface: #393e46;
+	--success: #34d399;
+	--error: #ef4444;
+}
 @theme {
-	--color-background: #222831;
-	--color-card: #393e46;
-	--color-muted: #948979;
-	--color-surface: #393e46;
+	--color-background: var(--background);
+	--color-surface: var(--surface);
+	--color-success: var(--success);
+	--color-error: var(--error);
 }
 
 @layer base {

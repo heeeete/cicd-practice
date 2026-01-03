@@ -16,7 +16,7 @@ const WorkflowStatus = ({ workflowRuns, loading, error }) => {
     return (
       <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
         <h2 className="text-2xl font-bold text-white mb-4">Recent Workflows</h2>
-        <div className="bg-red-900/50 border border-red-500 text-red-200 p-4 rounded">
+        <div className="bg-red-900/50 border border-red-500 text-red-200 p-4 rounded-sm">
           <p className="font-semibold">Error loading workflows</p>
           <p className="text-sm mt-1">{error}</p>
         </div>
@@ -51,7 +51,7 @@ const WorkflowStatus = ({ workflowRuns, loading, error }) => {
         {workflowRuns.slice(0, 5).map((run) => (
           <div
             key={run.id}
-            className={`border-l-4 p-4 rounded transition-all hover:scale-[1.02] ${getStatusColor(run)}`}
+            className={`border-l-4 p-4 rounded-sm transition-all hover:scale-[1.02] ${getStatusColor(run)}`}
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
@@ -77,7 +77,7 @@ const WorkflowStatus = ({ workflowRuns, loading, error }) => {
                 href={run.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-4 bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-colors"
+                className="ml-4 bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-sm text-sm transition-colors"
               >
                 View
               </a>

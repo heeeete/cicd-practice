@@ -4,7 +4,7 @@ import SystemMetrics from "./components/SystemMetrics";
 import WorkflowStatus from "./components/WorkflowStatus";
 import BuildChart from "./components/BuildChart";
 
-function App() {
+export default function App() {
 	const { workflowRuns, loading, error } = useGitHubAPI();
 
 	return (
@@ -22,5 +22,3 @@ function App() {
 		</div>
 	);
 }
-
-export default App;

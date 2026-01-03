@@ -1,6 +1,6 @@
 import { formatDistanceToNow } from "../lib/helpers";
 
-const WorkflowStatus = ({ workflowRuns, loading, error }) => {
+export default function WorkflowStatus({ workflowRuns, loading, error }) {
 	console.log(workflowRuns);
 	if (loading) {
 		return (
@@ -81,6 +81,4 @@ const WorkflowStatus = ({ workflowRuns, loading, error }) => {
 			</div>
 		</div>
 	);
-};
-
-export default WorkflowStatus;
+}

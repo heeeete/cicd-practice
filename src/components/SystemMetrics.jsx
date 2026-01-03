@@ -1,16 +1,6 @@
 import { formatDistanceToNow } from "../lib/helpers";
 
-const MetricCard = ({ title, value, icon }) => (
-	<div className="bg-surface rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
-		<div className="flex items-center justify-between mb-2">
-			<h3 className="text-gray-400 text-sm uppercase tracking-wide">{title}</h3>
-			<span className="text-2xl">{icon}</span>
-		</div>
-		<p className="text-3xl font-bold ">{value}</p>
-	</div>
-);
-
-const SystemMetrics = ({ workflowRuns }) => {
+export default function SystemMetrics({ workflowRuns }) {
 	const getMetrics = () => {
 		if (!workflowRuns || workflowRuns.length === 0) {
 			return {
@@ -44,6 +34,16 @@ const SystemMetrics = ({ workflowRuns }) => {
 			<MetricCard title="Success Rate" value={metrics.successRate} icon="📊" />
 		</div>
 	);
-};
+}
 
-export default SystemMetrics;
+function MetricCard({ title, value, icon }) {
+	return (
+		<div className="bg-surface rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+			<div className="flex items-center justify-between mb-2">
+				<h3 className="text-gray-400 text-sm uppercase tracking-wide">{title}</h3>
+				<span className="text-2xl">{icon}</span>
+			</div>
+			<p className="text-3xl font-bold ">{value}</p>
+		</div>
+	);
+}

@@ -1,4 +1,4 @@
-const Header = () => {
+export default function Header() {
 	return (
 		<header className="bg-surface shadow-lg mb-8 p-6 rounded-lg">
 			<div className="max-w-7xl mx-auto">
@@ -7,6 +7,4 @@ const Header = () => {
 			</div>
 		</header>
 	);
-};
-
-export default Header;
+}

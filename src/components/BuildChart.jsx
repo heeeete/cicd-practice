@@ -13,7 +13,7 @@ import { calculateDuration } from "../lib/helpers";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const BuildChart = ({ workflowRuns }) => {
+export default function BuildChart({ workflowRuns }) {
 	const getChartData = () => {
 		if (!workflowRuns || workflowRuns.length === 0) {
 			return {
@@ -119,6 +119,4 @@ const BuildChart = ({ workflowRuns }) => {
 			</div>
 		</div>
 	);
-};
-
-export default BuildChart;
+}

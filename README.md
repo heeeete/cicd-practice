@@ -11,7 +11,7 @@ GitHub Actions를 사용하여 코드 push 시 자동으로 Docker 이미지를 
 **추가로 GitHub Actions 워크플로우를 실시간으로 모니터링하는 대시보드를 구현**하여, 배포에 걸린 시간, 실행 시간을 시각화했습니다.
 
 **기술 스택:**
-
+ 
 - **애플리케이션**: React 19. 2 + Vite 7.2
 - **컨테이너**: Docker Multi-stage build (Node.js 22 Alpine → Nginx Alpine)
 - **CI/CD**: GitHub Actions
